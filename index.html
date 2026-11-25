@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05080f" />
+    <meta
+      name="description"
+      content="Plataforma pessoal de estudos para o concurso da PMPE: cronograma fixo até a prova, metas por matéria, simulados e TAF."
+    />
+    <title>PMPE · Central de Estudos</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="M3 10.5 12 3l9 7.5" />
+        <path d="M5 9.5V21h14V9.5" />
+        <path d="M9 21v-6h6v6" />
+      </symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="16" rx="2" />
+        <path d="M8 3v4M16 3v4M3 10h18" />
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+      </symbol>
+      <symbol id="i-history" viewBox="0 0 24 24">
+        <path d="M3 12a9 9 0 1 0 3-6.7" />
+        <path d="M3 4v5h5" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+        <circle cx="9" cy="7" r="2" />
+        <circle cx="15" cy="12" r="2" />
+        <circle cx="7" cy="17" r="2" />
+      </symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24">
+        <path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20Z" />
+        <path d="m13.5 6.5 3 3" />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 3v12M7 10l5 5 5-5" />
+        <path d="M4 20h16" />
+      </symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24">
+        <path d="M12 16V4M7 9l5-5 5 5" />
+        <path d="M4 20h16" />
+      </symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24">
+        <path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14" />
+        <path d="M10 11v6M14 11v6" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 6" /></symbol>
+    </svg>
+
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="m12 2.6 2.7 5.8 6.3.8-4.7 4.3 1.3 6.2L12 16.5l-5.6 3.2 1.3-6.2L3 9.2l6.3-.8L12 2.6Z"
+                fill="#0b1220"
+              />
+            </svg>
+          </div>
+          <div>
+            <h1>PMPE</h1>
+            <p>Central de Estudos</p>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="avatar" id="profileInitial">M</div>
+          <div class="profile-info">
+            <strong id="profileName">Márcio</strong>
+            <span>Soldado · PMPE</span>
+          </div>
+          <button
+            type="button"
+            class="icon-btn profile-edit"
+            data-view="ajustes"
+            aria-label="Editar perfil"
+            title="Editar perfil"
+          >
+            <svg class="icon"><use href="#i-edit" /></svg>
+          </button>
+        </div>
+
+        <nav class="nav" aria-label="Navegação principal">
+          <button type="button" class="nav-item active" data-view="hoje">
+            <svg class="icon"><use href="#i-home" /></svg><span>Hoje</span>
+          </button>
+          <button type="button" class="nav-item" data-view="cronograma">
+            <svg class="icon"><use href="#i-calendar" /></svg><span>Cronograma</span>
+          </button>
+          <button type="button" class="nav-item" data-view="desempenho">
+            <svg class="icon"><use href="#i-chart" /></svg><span>Desempenho</span>
+          </button>
+          <button type="button" class="nav-item" data-view="historico">
+            <svg class="icon"><use href="#i-history" /></svg><span>Histórico</span>
+          </button>
+        </nav>
+
+        <div class="side-exam">
+          <div class="side-exam-top">
+            <span class="side-label">Prova PMPE</span>
+            <svg class="icon"><use href="#i-calendar" /></svg>
+          </div>
+          <strong id="sideExamDate">21/02/2027</strong>
+          <div class="side-count"><b id="sideDays">90</b> dias restantes</div>
+          <div class="side-bar"><i id="sideProgress"></i></div>
+        </div>
+
+        <div class="side-bottom">
+          <button type="button" class="nav-item" data-view="ajustes">
+            <svg class="icon"><use href="#i-settings" /></svg><span>Ajustes</span>
+          </button>
+          <p class="side-note"><span class="dot"></span> Dados salvos neste navegador</p>
+        </div>
+      </aside>
+
+      <div class="main">
+        <header class="topbar">
+          <div class="topbar-mobile-brand">
+            <div class="brand-mark small" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="m12 2.6 2.7 5.8 6.3.8-4.7 4.3 1.3 6.2L12 16.5l-5.6 3.2 1.3-6.2L3 9.2l6.3-.8L12 2.6Z"
+                  fill="#0b1220"
+                />
+              </svg>
+            </div>
+            <span>PMPE</span>
+          </div>
+          <div class="topbar-date">
+            <svg class="icon"><use href="#i-calendar" /></svg>
+            <span id="todayLabel">segunda-feira, 23 de novembro</span>
+          </div>
+          <div class="topbar-actions">
+            <span
+              class="save-pill"
+              id="globalSave"
+              title="Seus dados são salvos automaticamente neste navegador"
+            >
+              <i></i><span id="globalSaveText">Salvo</span>
+            </span>
+            <button
+              type="button"
+              class="icon-btn topbar-settings"
+              data-view="ajustes"
+              aria-label="Abrir ajustes"
+            >
+              <svg class="icon"><use href="#i-settings" /></svg>
+            </button>
+          </div>
+        </header>
+
+        <main class="content">
+          <!-- ============ HOJE ============ -->
+          <section class="view active" id="view-hoje">
+            <div class="page-head">
+              <div>
+                <h1>
+                  <span id="greetPrefix">Boa noite</span
+                  ><span id="greetNameWrap">, <span class="name" id="greetName">Márcio</span></span
+                  >.
+                </h1>
+                <p>Seu painel de preparação para a PMPE.</p>
+              </div>
+            </div>
+
+            <section class="hero" aria-label="Contagem regressiva e foco do dia">
+              <div class="hero-main">
+                <span class="eyebrow"><i class="pulse"></i> Contagem regressiva · Prova PMPE</span>
+                <div class="countdown">
+                  <span class="countdown-num" id="daysLeft">90</span>
+                  <span class="countdown-unit">dias</span>
+                </div>
+                <p class="countdown-sub">
+                  para a prova de <strong id="examDateLong">21 de fevereiro de 2027</strong>
+                  <button type="button" class="link-inline" data-view="ajustes">
+                    ajustar data
+                  </button>
+                </p>
+                <p class="hero-msg" id="heroMessage">
+                  Cada dia conta. Comece pelo que rende mais e mantenha a sequência.
+                </p>
+                <div class="exam-pills" aria-label="Informações da prova">
+                  <span>60 questões</span>
+                  <span>Redação 40 pts</span>
+                  <span>Banca AOCP</span>
+                </div>
+                <div class="timeline-block">
+                  <div class="timeline-head">
+                    <span>Tempo de preparação</span>
+                    <span class="time-chip" id="timePct">0% do tempo</span>
+                  </div>
+                  <div
+                    class="timeline"
+                    role="progressbar"
+                    aria-label="Tempo de preparação transcorrido"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                  >
+                    <div class="timeline-fill" id="timelineFill"></div>
+                    <div class="timeline-dot" id="timelineDot"></div>
+                  </div>
+                  <div class="timeline-labels">
+                    <span>Início · <b id="startShort">23/11/2026</b></span>
+                    <span>Prova · <b id="examShort">21/02/2027</b></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="focus-card" id="focusCard">
+                <div class="focus-head">
+                  <span>Foco de hoje</span>
+                  <span class="focus-status" id="focusStatus">Foco recomendado</span>
+                </div>
+                <div class="focus-main">
+                  <div class="focus-icon" id="focusIcon">📖</div>
+                  <div class="focus-info">
+                    <div class="focus-subject" id="focusSubject">Português</div>
+                    <div class="focus-task" id="focusTask">Teoria + 10 questões</div>
+                  </div>
+                </div>
+                <div class="focus-tags">
+                  <span id="focusBlock">Bloco I</span>
+                  <span id="focusPoints">10 questões</span>
+                </div>
+                <div class="focus-reason">
+                  <span id="focusReasonLabel">Por que hoje</span>
+                  <b id="focusReason">Ainda não estudada</b>
+                </div>
+                <div class="focus-goal">
+                  <div class="focus-goal-row">
+                    <span id="focusGoalLabel">Meta de hoje</span
+                    ><span id="focusGoalText">0h de 3h</span>
+                  </div>
+                  <div class="focus-goal-track"><div id="focusGoalFill"></div></div>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-gold focus-btn"
+                  id="focusBtn"
+                  data-id="portugues"
+                  data-done="0"
+                >
+                  Marcar como estudado
+                </button>
+                <button
+                  type="button"
+                  class="focus-link"
+                  data-view="cronograma"
+                  data-crono-tab="plano"
+                >
+                  Ver cronograma completo <svg class="icon"><use href="#i-arrow" /></svg>
+                </button>
+              </div>
+            </section>
+
+            <section class="stats" aria-label="Resumo geral">
+              <div class="stat">
+                <div class="stat-top"><span class="stat-icon">📅</span> Dias estudados</div>
+                <div class="stat-value" id="statDays">0</div>
+                <div class="stat-sub" id="statDaysSub">0% dos dias desde o início</div>
+              </div>
+              <div class="stat">
+                <div class="stat-top"><span class="stat-icon green">🔥</span> Sequência atual</div>
+                <div class="stat-value" id="statStreak">0 <small>dias</small></div>
+                <div class="stat-sub" id="statStreakSub">comece hoje</div>
+              </div>
+              <div class="stat">
+                <div class="stat-top"><span class="stat-icon blue">⏱️</span> Horas totais</div>
+                <div class="stat-value" id="statHours">0<small>h</small></div>
+                <div class="stat-sub" id="statHoursSub">nenhuma hora registrada</div>
+              </div>
+              <div class="stat">
+                <div class="stat-top"><span class="stat-icon purple">🎯</span> Questões</div>
+                <div class="stat-value" id="statQuestions">0</div>
+                <div class="stat-sub" id="statQuestionsSub">sem questões registradas</div>
+              </div>
+            </section>
+
+            <div class="today-grid">
+              <section class="card log-card" id="logCard" aria-labelledby="logTitle">
+                <div class="card-head">
+                  <div>
+                    <h2 id="logTitle">Registro do dia</h2>
+                    <p id="logHint">Marque as matérias que você estudou.</p>
+                  </div>
+                  <div class="date-nav-inline">
+                    <div class="date-nav">
+                      <button type="button" class="icon-nav" id="prevDay" aria-label="Dia anterior">
+                        ‹
+                      </button>
+                      <input type="date" id="logDate" aria-label="Data do registro" />
+                      <button type="button" class="icon-nav" id="nextDay" aria-label="Próximo dia">
+                        ›
+                      </button>
+                      <button type="button" class="btn btn-mini" id="todayBtn">Hoje</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="subject-grid" id="subjectGrid" aria-label="Matérias do edital"></div>
+
+                <div class="log-meta">
+                  <span id="subjectCount">Nenhuma matéria marcada</span>
+                  <span class="goal-badge" id="goalBadge">Meta diária: 3h</span>
+                </div>
+
+                <div class="fields">
+                  <label class="field" for="hours">
+                    <span>Horas estudadas</span>
+                    <span class="input-wrap"
+                      ><input
+                        id="hours"
+                        type="number"
+                        inputmode="decimal"
+                        min="0"
+                        max="24"
+                        step="0.5"
+                        placeholder="0"
+                      /><span class="suffix">h</span></span
+                    >
+                  </label>
+                  <label class="field" for="questions">
+                    <span>Questões</span>
+                    <span class="input-wrap"
+                      ><input
+                        id="questions"
+                        type="number"
+                        inputmode="numeric"
+                        min="0"
+                        max="9999"
+                        step="1"
+                        placeholder="0"
+                      /><span class="suffix">q</span></span
+                    >
+                  </label>
+                  <label class="field" for="correct">
+                    <span>Acertos</span>
+                    <span class="input-wrap"
+                      ><input
+                        id="correct"
+                        type="number"
+                        inputmode="numeric"
+                        min="0"
+                        max="9999"
+                        step="1"
+                        placeholder="0"
+                      /><span class="suffix">✓</span></span
+                    >
+                  </label>
+                  <div class="perf-box">
+                    <span>Aproveitamento</span>
+                    <strong id="dayPerf">—</strong>
+                  </div>
+                </div>
+
+                <div class="goal-row">
+                  <div class="goal-track" aria-hidden="true">
+                    <div class="goal-fill" id="goalFill"></div>
+                  </div>
+                  <span class="goal-text" id="goalText">0h de 3h</span>
+                </div>
+
+                <label class="field notes-field" for="notes">
+                  <span>Anotações do dia</span>
+                  <textarea
+                    id="notes"
+                    rows="3"
+                    maxlength="3000"
+                    placeholder="Ex.: revisei crase, 40 questões de RLM, resumo de História..."
+                  ></textarea>
+                </label>
+
+                <div class="log-footer">
+                  <span class="save-local" id="saveState"
+                    ><span class="dot"></span><span id="saveText">Salvo automaticamente</span></span
+                  >
+                  <span class="log-tip">Tudo fica salvo neste navegador</span>
+                </div>
+              </section>
+
+              <aside class="today-side">
+                <section class="card next-card" aria-labelledby="nextTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="nextTitle">Próximos dias</h2>
+                      <p>Seu plano continua</p>
+                    </div>
+                    <button
+                      type="button"
+                      class="link-btn"
+                      data-view="cronograma"
+                      data-crono-tab="plano"
+                    >
+                      ver tudo →
+                    </button>
+                  </div>
+                  <div class="next-list" id="nextDays"></div>
+                </section>
+
+                <section class="card review-card" aria-labelledby="reviewTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="reviewTitle">Revisão sugerida</h2>
+                      <p>As que estão há mais tempo sem contato</p>
+                    </div>
+                  </div>
+                  <div class="review-list" id="reviewList"></div>
+                </section>
+              </aside>
+            </div>
+          </section>
+
+          <!-- ============ CRONOGRAMA ============ -->
+          <section class="view" id="view-cronograma">
+            <div class="page-head">
+              <div>
+                <h1>Cronograma</h1>
+                <p>Seu plano fechado, um foco por dia, até a véspera da prova.</p>
+              </div>
+              <span class="page-chip" id="scheduleChip">Hoje · Português</span>
+            </div>
+
+            <div class="subnav" role="tablist" aria-label="Seções do cronograma">
+              <button type="button" class="active" data-crono-tab="semana">Semana</button>
+              <button type="button" data-crono-tab="plano">Até a prova</button>
+              <button type="button" data-crono-tab="metas">Metas</button>
+            </div>
+
+            <div class="subview active" id="crono-semana">
+              <section class="card schedule-card" aria-labelledby="scheduleTitle">
+                <div class="card-head">
+                  <div>
+                    <h2 id="scheduleTitle">Próximos 7 dias</h2>
+                    <p>Foco definido no plano até a prova</p>
+                  </div>
+                  <span class="chip-soft">1 foco por dia</span>
+                </div>
+                <div class="plan-grid" id="planStrip"></div>
+                <p class="plan-note">
+                  O foco de cada dia vem do plano fechado. A revisão sugerida, na página Hoje, se
+                  adapta ao seu histórico e aponta o que está mais frio.
+                </p>
+              </section>
+            </div>
+
+            <div class="subview" id="crono-plano">
+              <section class="card plan-summary-card" id="planSummaryCard"></section>
+              <section class="card plan-weeks-card" aria-labelledby="fullPlanTitle">
+                <div class="card-head">
+                  <div>
+                    <h2 id="fullPlanTitle">Plano completo</h2>
+                    <p>Semana a semana, até a véspera da prova</p>
+                  </div>
+                  <span class="chip-soft" id="fullPlanChip">—</span>
+                </div>
+                <div class="plan-weeks" id="fullPlanWeeks"></div>
+              </section>
+              <div class="plan-info-grid">
+                <section class="card exam-map-card" aria-labelledby="mapTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="mapTitle">Mapa da prova</h2>
+                      <p>Edital 001/2026 · Soldado</p>
+                    </div>
+                    <span class="chip-soft">60 questões + redação</span>
+                  </div>
+                  <div class="map-list">
+                    <div class="map-block">
+                      <div class="map-block-head">
+                        <span class="block-tag b1">Bloco I</span><span>20 questões</span>
+                      </div>
+                      <div class="map-subjects">
+                        <span><i>📖</i> Língua Portuguesa <b>10</b></span>
+                        <span><i>🏰</i> História de PE <b>10</b></span>
+                      </div>
+                    </div>
+                    <div class="map-block">
+                      <div class="map-block-head">
+                        <span class="block-tag b2">Bloco II</span><span>20 questões</span>
+                      </div>
+                      <div class="map-subjects">
+                        <span><i>🧠</i> Raciocínio Lógico <b>10</b></span>
+                        <span><i>💻</i> Informática <b>10</b></span>
+                      </div>
+                    </div>
+                    <div class="map-block">
+                      <div class="map-block-head">
+                        <span class="block-tag b3">Bloco III</span><span>20 questões</span>
+                      </div>
+                      <div class="map-subjects">
+                        <span><i>⚖️</i> Direito Constitucional <b>10</b></span>
+                        <span><i>🛡️</i> DH e Legislação <b>10</b></span>
+                      </div>
+                    </div>
+                    <div class="map-block">
+                      <div class="map-block-head">
+                        <span class="block-tag b4">Redação</span><span>40 pontos</span>
+                      </div>
+                      <div class="map-subjects">
+                        <span><i>✍️</i> Dissertação de 15 a 20 linhas</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="map-note">
+                    Mínimo eliminatório: 30% em cada bloco, 30% no total e nenhuma matéria zerada.
+                  </p>
+                </section>
+
+                <section class="card how-card" aria-labelledby="howTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="howTitle">Como o plano funciona</h2>
+                      <p>Fechado e equilibrado</p>
+                    </div>
+                  </div>
+                  <ol class="how-list">
+                    <li>
+                      <span class="how-num">1</span>
+                      <div>
+                        <b>Plano fechado</b>
+                        <p>
+                          O cronograma já está definido até a véspera da prova, com um foco por dia.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="how-num">2</span>
+                      <div>
+                        <b>Ciclo equilibrado</b>
+                        <p>
+                          As 7 frentes se revezam; cada semana contém todas as matérias do edital.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="how-num">3</span>
+                      <div>
+                        <b>Ritmo real</b>
+                        <p>
+                          Se um dia passar em branco, a matéria aparece na revisão sugerida e o
+                          plano segue.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="how-num">4</span>
+                      <div>
+                        <b>Você no controle</b>
+                        <p>
+                          Pode registrar outras matérias e regerar o plano quando sua rotina mudar.
+                        </p>
+                      </div>
+                    </li>
+                  </ol>
+                  <div class="tip-box">
+                    O plano é fixo. Regenere quando a rotina ou a data da prova mudar.
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <div class="subview" id="crono-metas">
+              <section class="card goals-card" aria-labelledby="goalsTitle">
+                <div class="card-head">
+                  <div>
+                    <h2 id="goalsTitle">Metas por matéria</h2>
+                    <p>Quantos dias você quer dedicar a cada frente</p>
+                  </div>
+                  <span class="chip-soft" id="goalsMet">0 de 7 metas</span>
+                </div>
+                <div class="goals-list" id="goalsList"></div>
+                <div class="goals-foot">
+                  <button type="button" class="btn btn-gold" id="saveGoals">Salvar metas</button>
+                  <p class="goals-note">
+                    As metas são referências pessoais. O plano fixo reserva uma quantidade
+                    equilibrada de dias; você pode estudar além no registro diário.
+                  </p>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section class="view" id="view-desempenho">
+            <div class="page-head">
+              <div>
+                <h1>Desempenho</h1>
+                <p>Evolução, simulados e TAF em um só lugar.</p>
+              </div>
+              <span class="page-chip neutral">PMPE · Soldado</span>
+            </div>
+
+            <div class="subnav" role="tablist" aria-label="Seções de desempenho">
+              <button type="button" class="active" data-perf-tab="evolucao">Evolução</button>
+              <button type="button" data-perf-tab="simulados">Simulados</button>
+              <button type="button" data-perf-tab="taf">TAF</button>
+            </div>
+
+            <div class="subview active" id="perf-evolucao">
+              <div class="perf-top">
+                <section class="card consistency-card" aria-labelledby="consistencyTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="consistencyTitle">Consistência</h2>
+                      <p>Dias com estudo</p>
+                    </div>
+                  </div>
+                  <div class="ring-wrap">
+                    <svg class="ring" viewBox="0 0 170 170" aria-hidden="true">
+                      <defs>
+                        <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stop-color="#f9db8c" />
+                          <stop offset="60%" stop-color="#f4c95d" />
+                          <stop offset="100%" stop-color="#5b8cff" />
+                        </linearGradient>
+                      </defs>
+                      <circle class="ring-bg" cx="85" cy="85" r="62" />
+                      <circle class="ring-fg" id="ringFg" cx="85" cy="85" r="62" />
+                    </svg>
+                    <div class="ring-center">
+                      <span id="ringPct">0%</span>
+                      <span>consistência</span>
+                    </div>
+                  </div>
+                  <p class="ring-sub" id="ringSub">0 de 0 dias com estudo</p>
+                  <div class="mini-stats">
+                    <div class="mini-stat">
+                      <span>Recorde</span><strong id="ringRecord">0 dias</strong>
+                    </div>
+                    <div class="mini-stat">
+                      <span>Questões</span><strong id="ringQuestions">0 · 0%</strong>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="card chart-card" aria-labelledby="chartTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="chartTitle">Horas por semana</h2>
+                      <p>Últimas 8 semanas</p>
+                    </div>
+                    <span class="chip-soft" id="chartTotal">0h</span>
+                  </div>
+                  <div class="week-chart" id="weekChart"></div>
+                  <p class="chart-note" id="chartNote"></p>
+                </section>
+              </div>
+
+              <div class="perf-mid">
+                <section class="card heat-card" aria-labelledby="heatTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="heatTitle">Frequência</h2>
+                      <p>Últimas 18 semanas</p>
+                    </div>
+                    <span class="chip-soft" id="heatTotal">0 dias</span>
+                  </div>
+                  <div class="heat-scroll">
+                    <div class="heat">
+                      <div class="heat-top">
+                        <span class="heat-corner"></span>
+                        <div class="heat-months" id="heatMonths"></div>
+                      </div>
+                      <div class="heat-main">
+                        <div class="heat-weekdays" aria-hidden="true">
+                          <span>Seg</span><span></span><span>Qua</span><span></span><span>Sex</span
+                          ><span></span><span></span>
+                        </div>
+                        <div class="heat-grid" id="heatGrid"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="heat-legend" aria-hidden="true">
+                    <span>Menos</span><i class="l1"></i><i class="l2"></i><i class="l3"></i
+                    ><i class="l4"></i><span>Mais</span> <span class="legend-spacer"></span
+                    ><span class="muted">Clique em um dia</span>
+                  </div>
+                  <div class="heat-insights">
+                    <div class="heat-insight">
+                      <span>Dia mais produtivo</span><strong id="heatBestDay">—</strong>
+                    </div>
+                    <div class="heat-insight">
+                      <span>Matéria mais constante</span><strong id="heatTopSubject">—</strong>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="card subjects-card" aria-labelledby="subjectsTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="subjectsTitle">Por matéria</h2>
+                      <p>Clique para marcar no dia de hoje</p>
+                    </div>
+                    <span class="chip-soft">7 matérias</span>
+                  </div>
+                  <div id="subjectStats"></div>
+                </section>
+              </div>
+            </div>
+
+            <div class="subview" id="perf-simulados">
+              <section class="stats sim-summary" aria-label="Resumo dos simulados">
+                <div class="stat">
+                  <div class="stat-top"><span class="stat-icon">📝</span> Simulados</div>
+                  <div class="stat-value" id="simTotal">0</div>
+                  <div class="stat-sub">registrados</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-top"><span class="stat-icon green">📈</span> Média</div>
+                  <div class="stat-value" id="simAvg">—</div>
+                  <div class="stat-sub">aproveitamento médio</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-top"><span class="stat-icon blue">🏆</span> Melhor</div>
+                  <div class="stat-value" id="simBest">—</div>
+                  <div class="stat-sub">seu recorde</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-top"><span class="stat-icon purple">🕒</span> Último</div>
+                  <div class="stat-value" id="simLast">—</div>
+                  <div class="stat-sub">resultado mais recente</div>
+                </div>
+              </section>
+
+              <div class="sim-grid">
+                <section class="card sim-form" aria-labelledby="simFormTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="simFormTitle">Novo simulado</h2>
+                      <p>Objetiva + redação, quando houver</p>
+                    </div>
+                  </div>
+                  <div class="sim-fields">
+                    <label class="form-field"
+                      ><span>Data</span><input type="date" id="simDate"
+                    /></label>
+                    <label class="form-field"
+                      ><span>Título</span
+                      ><input
+                        type="text"
+                        id="simTitle"
+                        maxlength="60"
+                        placeholder="Simulado PMPE 01"
+                    /></label>
+                    <label class="form-field"
+                      ><span>Questões</span
+                      ><input type="number" id="simQuestions" min="1" max="200" value="60"
+                    /></label>
+                    <label class="form-field"
+                      ><span>Acertos</span
+                      ><input type="number" id="simCorrect" min="0" max="200" placeholder="0"
+                    /></label>
+                    <label class="form-field"
+                      ><span>Redação (0–40)</span
+                      ><input
+                        type="number"
+                        id="simEssay"
+                        min="0"
+                        max="40"
+                        step="0.5"
+                        placeholder="opcional"
+                    /></label>
+                    <label class="form-field"
+                      ><span>Tempo (min)</span
+                      ><input
+                        type="number"
+                        id="simMinutes"
+                        min="0"
+                        max="600"
+                        placeholder="opcional"
+                    /></label>
+                    <label class="form-field sim-notes"
+                      ><span>Observações</span
+                      ><textarea
+                        id="simNotes"
+                        rows="3"
+                        maxlength="1000"
+                        placeholder="O que funcionou? O que revisar?"
+                      ></textarea>
+                    </label>
+                  </div>
+                  <button type="button" class="btn btn-gold sim-add" id="addSimulado">
+                    Registrar simulado
+                  </button>
+                  <p class="sim-note">
+                    A nota total soma acertos + redação. A porcentagem considera o máximo de 100
+                    pontos quando há redação.
+                  </p>
+                </section>
+
+                <section class="card sim-history" aria-labelledby="simHistoryTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="simHistoryTitle">Seus simulados</h2>
+                      <p>Resultados na ordem mais recente</p>
+                    </div>
+                    <span class="chip-soft" id="simHistoryCount">0</span>
+                  </div>
+                  <div id="simList"></div>
+                </section>
+              </div>
+            </div>
+
+            <div class="subview" id="perf-taf">
+              <div class="taf-banner">
+                <div>
+                  <span class="taf-eyebrow">TAF PMPE · Edital 001/2026</span>
+                  <strong id="tafBannerDate">23/07/2027</strong>
+                  <span id="tafCountdown">Faltam 0 dias</span>
+                </div>
+                <div class="taf-banner-actions">
+                  <span class="chip-soft" id="tafProfileLabel">Índices masculinos</span>
+                  <button type="button" class="btn" id="toggleTafConfig">Ajustar metas</button>
+                </div>
+              </div>
+
+              <section class="card taf-config" id="tafConfig" hidden>
+                <div class="card-head">
+                  <div>
+                    <h2>Metas do TAF</h2>
+                    <p>Índices oficiais + seus objetivos</p>
+                  </div>
+                  <button
+                    type="button"
+                    class="icon-btn"
+                    id="closeTafConfig"
+                    aria-label="Fechar metas"
+                  >
+                    ×
+                  </button>
+                </div>
+                <div class="taf-config-grid">
+                  <label class="form-field"
+                    ><span>Data do TAF</span><input type="date" id="tafDateInput"
+                  /></label>
+                  <label class="form-field"
+                    ><span>Índices</span
+                    ><select id="tafProfileSelect">
+                      <option value="m">Masculino</option>
+                      <option value="f">Feminino</option>
+                    </select></label
+                  >
+                  <label class="form-field taf-target-field"
+                    ><span>Barra fixa</span><input type="text" id="tafTarget-barra" /><small
+                      id="tafHint-barra"
+                    ></small
+                  ></label>
+                  <label class="form-field taf-target-field"
+                    ><span>Salto em distância</span><input type="text" id="tafTarget-salto" /><small
+                      id="tafHint-salto"
+                    ></small
+                  ></label>
+                  <label class="form-field taf-target-field"
+                    ><span>Natação 50 m</span><input type="text" id="tafTarget-natacao" /><small
+                      id="tafHint-natacao"
+                    ></small
+                  ></label>
+                  <label class="form-field taf-target-field"
+                    ><span>Abdominal remador</span
+                    ><input type="text" id="tafTarget-abdominal" /><small
+                      id="tafHint-abdominal"
+                    ></small
+                  ></label>
+                  <label class="form-field taf-target-field"
+                    ><span>Corrida 2.400 m</span><input type="text" id="tafTarget-corrida" /><small
+                      id="tafHint-corrida"
+                    ></small
+                  ></label>
+                </div>
+                <button type="button" class="btn btn-gold" id="saveTafConfig">
+                  Salvar metas do TAF
+                </button>
+                <p class="settings-note">
+                  Índices do edital 001/2026 para Soldado. Confirme sempre a convocação e o
+                  protocolo oficial.
+                </p>
+              </section>
+
+              <div class="taf-grid" id="tafCards"></div>
+
+              <div class="taf-bottom">
+                <section class="card taf-form" id="tafSessionForm" aria-labelledby="tafFormTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="tafFormTitle">Registrar treino</h2>
+                      <p>Um resultado por vez</p>
+                    </div>
+                  </div>
+                  <div class="taf-form-fields">
+                    <label class="form-field"
+                      ><span>Data</span><input type="date" id="tafSessionDate"
+                    /></label>
+                    <label class="form-field"
+                      ><span>Exercício</span
+                      ><select id="tafExercise"></select
+                    ></label>
+                    <label class="form-field"
+                      ><span>Resultado</span
+                      ><input type="text" id="tafResult" placeholder="" /><small
+                        id="tafResultHint"
+                      ></small
+                    ></label>
+                    <label class="form-field"
+                      ><span>Observações</span
+                      ><input
+                        type="text"
+                        id="tafSessionNotes"
+                        maxlength="500"
+                        placeholder="opcional"
+                    /></label>
+                  </div>
+                  <button type="button" class="btn btn-gold" id="addTafSession">
+                    Registrar treino
+                  </button>
+                </section>
+
+                <section class="card taf-history" aria-labelledby="tafHistoryTitle">
+                  <div class="card-head">
+                    <div>
+                      <h2 id="tafHistoryTitle">Últimos treinos</h2>
+                      <p>Seu histórico físico</p>
+                    </div>
+                    <span class="chip-soft" id="tafSessionCount">0</span>
+                  </div>
+                  <div id="tafSessions"></div>
+                </section>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ HISTÓRICO ============ -->
+          <section class="view" id="view-historico">
+            <div class="page-head">
+              <div>
+                <h1>Histórico</h1>
+                <p>Todos os seus registros, em um só lugar.</p>
+              </div>
+            </div>
+
+            <section class="card history-card" aria-labelledby="historyTitle">
+              <div class="card-head">
+                <div>
+                  <h2 id="historyTitle">Seus registros</h2>
+                  <p>Clique em uma linha para editar no dia correspondente</p>
+                </div>
+              </div>
+              <div class="history-tools">
+                <label class="filter-field" for="historySubject">
+                  <span>Matéria</span>
+                  <select id="historySubject"></select>
+                </label>
+                <span class="chip-soft" id="historyCount">0 registros</span>
+                <span class="spacer"></span>
+                <button type="button" class="btn js-export-csv">
+                  <svg class="icon"><use href="#i-download" /></svg> Exportar CSV
+                </button>
+              </div>
+              <div id="historyBody"></div>
+            </section>
+          </section>
+
+          <!-- ============ AJUSTES ============ -->
+          <section class="view" id="view-ajustes">
+            <div class="page-head">
+              <div>
+                <h1>Ajustes</h1>
+                <p>Sua conta, sua prova e seus dados.</p>
+              </div>
+            </div>
+
+            <div class="settings-grid">
+              <section class="card settings-card" aria-labelledby="settingsTitle">
+                <div class="card-head">
+                  <div>
+                    <h2 id="settingsTitle">Perfil e prova</h2>
+                    <p>Personalize sua plataforma</p>
+                  </div>
+                </div>
+                <div class="field-line">
+                  <label for="setName">Seu nome</label>
+                  <input
+                    type="text"
+                    id="setName"
+                    maxlength="30"
+                    placeholder="Como você quer ser chamado?"
+                  />
+                  <small>Aparece na saudação e no seu perfil.</small>
+                </div>
+                <div class="field-line">
+                  <label for="setExam">Data da prova</label>
+                  <input type="date" id="setExam" />
+                  <small>PMPE Soldado · Edital 001/2026 · AOCP.</small>
+                </div>
+                <div class="field-line">
+                  <label for="setStart">Início da preparação</label>
+                  <input type="date" id="setStart" />
+                  <small>Usado para calcular a consistência e o tempo de preparação.</small>
+                </div>
+                <div class="field-line">
+                  <label for="setGoal">Meta diária (horas)</label>
+                  <input type="number" id="setGoal" min="0.5" max="16" step="0.5" />
+                  <small>Referência para a barra de progresso do dia.</small>
+                </div>
+                <button type="button" class="btn btn-gold save-settings" id="saveSettings">
+                  Salvar alterações
+                </button>
+                <p class="settings-note">
+                  A data oficial do edital é 21/02/2027. Ajuste se o cronograma mudar.
+                </p>
+              </section>
+
+              <section class="card data-card" aria-labelledby="dataTitle">
+                <div class="card-head">
+                  <div>
+                    <h2 id="dataTitle">Seus dados</h2>
+                    <p>Salvos neste navegador</p>
+                  </div>
+                  <span class="chip-soft data-size" id="dataSize">—</span>
+                </div>
+                <p class="data-lead">
+                  Cada alteração é salva automaticamente. Para trocar de navegador ou computador,
+                  use um backup.
+                </p>
+                <div class="data-actions">
+                  <button type="button" class="btn js-export-csv">
+                    <svg class="icon"><use href="#i-download" /></svg> Exportar CSV
+                  </button>
+                  <button type="button" class="btn js-export-json">
+                    <svg class="icon"><use href="#i-download" /></svg> Baixar backup
+                  </button>
+                  <button type="button" class="btn" id="importBtn">
+                    <svg class="icon"><use href="#i-upload" /></svg> Importar backup
+                  </button>
+                  <button type="button" class="btn danger" id="resetBtn">
+                    <svg class="icon"><use href="#i-trash" /></svg> Apagar registros
+                  </button>
+                </div>
+                <div class="info-box">
+                  Seus dados não vão para a nuvem. Se limpar os dados do navegador, o histórico se
+                  perde — por isso, baixe um backup de vez em quando.
+                </div>
+              </section>
+            </div>
+          </section>
+        </main>
+
+        <nav class="mobile-nav" aria-label="Navegação principal no celular">
+          <button type="button" class="mobile-tab active" data-view="hoje">
+            <svg class="icon"><use href="#i-home" /></svg><span>Hoje</span>
+          </button>
+          <button type="button" class="mobile-tab" data-view="cronograma">
+            <svg class="icon"><use href="#i-calendar" /></svg><span>Cronograma</span>
+          </button>
+          <button type="button" class="mobile-tab" data-view="desempenho">
+            <svg class="icon"><use href="#i-chart" /></svg><span>Desempenho</span>
+          </button>
+          <button type="button" class="mobile-tab" data-view="historico">
+            <svg class="icon"><use href="#i-history" /></svg><span>Histórico</span>
+          </button>
+          <button type="button" class="mobile-tab" data-view="ajustes">
+            <svg class="icon"><use href="#i-settings" /></svg><span>Ajustes</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <input type="file" id="importFile" accept="application/json,.json" hidden />
+    <div id="toasts" role="status" aria-live="polite"></div>
+  </body>
+</html>
