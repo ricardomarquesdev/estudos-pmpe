@@ -11,7 +11,7 @@
 
 ![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES2020-F7DF1E?logo=javascript&logoColor=000)
-![Tests](https://img.shields.io/badge/tests-30-2EA043)
+![Tests](https://img.shields.io/badge/tests-33-2EA043)
 ![License](https://img.shields.io/badge/license-MIT-2EA043)
 
 [Funcionalidades](#funcionalidades) · [Stack](#stack) · [Como rodar](#como-rodar) · [Deploy](#deploy-no-github-pages) · [Dados](#dados-e-privacidade)
@@ -175,20 +175,21 @@ Acesse `http://localhost:5173`.
 
 ### Scripts
 
-| Comando                | O que faz                                     |
-| ---------------------- | --------------------------------------------- |
-| `npm run dev`          | Sobe o servidor de desenvolvimento            |
-| `npm run build`        | Gera a versão de produção em `dist/`          |
-| `npm run preview`      | Pré-visualiza o build                         |
-| `npm test`             | Executa os testes com o runner nativo do Node |
-| `npm run lint`         | Analisa o código com ESLint                   |
-| `npm run lint:fix`     | Corrige problemas simples de lint             |
-| `npm run format`       | Formata o projeto com Prettier                |
-| `npm run format:check` | Verifica a formatação sem alterar arquivos    |
+| Comando                 | O que faz                                     |
+| ----------------------- | --------------------------------------------- |
+| `npm run dev`           | Sobe o servidor de desenvolvimento            |
+| `npm run build`         | Gera a versão de produção em `dist/`          |
+| `npm run preview`       | Pré-visualiza o build                         |
+| `npm test`              | Executa os testes com o runner nativo do Node |
+| `npm run lint`          | Analisa o código com ESLint                   |
+| `npm run lint:fix`      | Corrige problemas simples de lint             |
+| `npm run format`        | Formata o projeto com Prettier                |
+| `npm run format:check`  | Verifica a formatação sem alterar arquivos    |
+| `npm run hash-password` | Gera o hash SHA-256 de uma senha              |
 
 ## Testes e qualidade
 
-O projeto tem **30 testes unitários** cobrindo:
+O projeto tem **33 testes unitários** cobrindo:
 
 - datas e formatação;
 - geração, validação e metadados do plano;
@@ -196,7 +197,8 @@ O projeto tem **30 testes unitários** cobrindo:
 - estatísticas, sequência e consistência;
 - notas de simulados;
 - parsing e status do TAF;
-- CSV, backup e restauração.
+- CSV, backup e restauração;
+- hash SHA-256 usado no acesso.
 
 O workflow de CI executa, em todo push e pull request:
 
@@ -217,10 +219,29 @@ npm run build
 
 O workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builda o projeto e publica a pasta `dist`. O Vite está configurado com `base: './'`, então o app funciona em páginas de projeto (`usuario.github.io/repositorio/`).
 
+## Acesso restrito
+
+O app publicado inclui uma tela de entrada com usuário e senha. A sessão fica no `sessionStorage` do navegador e pode ser encerrada em **Ajustes → Acesso → Sair da conta**.
+
+As credenciais de produção ficam em [`.env.production`](.env.production):
+
+- `VITE_APP_USER`: usuário (`marcio` por padrão);
+- `VITE_APP_PASSWORD_HASH`: hash SHA-256 da senha.
+
+A senha em texto puro não é versionada. Para trocá-la:
+
+```bash
+npm run hash-password -- "nova senha"
+```
+
+Atualize `VITE_APP_PASSWORD_HASH` em `.env.production`, faça commit e push. Para testar o login localmente, copie `.env.example` para `.env.local` e preencha os dois valores.
+
+> **Importante:** como o GitHub Pages é um site estático, essa tela é uma **barreira de acesso casual**, não autenticação de servidor. O hash e o código ficam no bundle público, então alguém com conhecimento técnico pode contornar a tela. Não reutilize uma senha importante. Para proteção forte, use Cloudflare Access, Netlify/Vercel com proteção por senha ou um backend de autenticação.
+
 ## Dados e privacidade
 
 - Tudo fica no **`localStorage` do navegador**, na chave `pmpe-painel-v1`.
-- Não há backend, conta, analytics ou envio de dados.
+- Não há backend, analytics ou envio de dados. O login é validado localmente no navegador.
 - Limpar os dados do navegador apaga o histórico. Use **Ajustes → Seus dados → Baixar backup** regularmente.
 - O armazenamento é por origem: `localhost`, o preview e o GitHub Pages têm bases separadas. Para levar os dados de um ambiente para outro, use o backup JSON.
 - O app aceita backups da versão anterior (o estado é migrado pelo `stateFrom`).

@@ -574,3 +574,23 @@
     text-shadow: none !important;
   }
 }
+
+@media (max-width: 460px) {
+  .auth-gate {
+    padding: 14px;
+  }
+  .auth-card {
+    padding: 24px 20px;
+  }
+  .auth-card h1 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .access-card {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+}

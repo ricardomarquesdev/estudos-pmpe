@@ -3,3 +3,5 @@ dist
 package-lock.json
 docs/*.webp
 .editorconfig
+.env.local
+.env.example

@@ -21,7 +21,7 @@
     />
     <script type="module" src="/src/main.js"></script>
   </head>
-  <body>
+  <body class="auth-pending">
     <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <symbol id="i-home" viewBox="0 0 24 24">
         <path d="M3 10.5 12 3l9 7.5" />
@@ -64,7 +64,55 @@
       </symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 6" /></symbol>
+      <symbol id="i-exit" viewBox="0 0 24 24">
+        <path d="M14 4h5v16h-5" />
+        <path d="m9 8 4 4-4 4M3 12h10" />
+      </symbol>
     </svg>
+
+    <div class="auth-gate" id="authGate">
+      <form class="auth-card" id="authForm" novalidate>
+        <div class="auth-brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="m12 2.6 2.7 5.8 6.3.8-4.7 4.3 1.3 6.2L12 16.5l-5.6 3.2 1.3-6.2L3 9.2l6.3-.8L12 2.6Z"
+                fill="#0b1220"
+              />
+            </svg>
+          </div>
+          <div><strong>PMPE</strong><span>Central de Estudos</span></div>
+        </div>
+        <span class="eyebrow"><i class="pulse"></i> Acesso restrito</span>
+        <h1>Entre na sua plataforma</h1>
+        <p class="auth-lede">Use seu usuário e senha para acessar o painel de estudos.</p>
+        <label class="auth-field" for="authUser">
+          <span>Usuário</span>
+          <input
+            id="authUser"
+            name="username"
+            type="text"
+            autocomplete="username"
+            autocapitalize="none"
+            spellcheck="false"
+            required
+          />
+        </label>
+        <label class="auth-field" for="authPassword">
+          <span>Senha</span>
+          <input
+            id="authPassword"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </label>
+        <button type="submit" class="btn btn-gold auth-submit" id="authSubmit">Entrar</button>
+        <p class="auth-error" id="authError" role="alert"></p>
+        <p class="auth-foot">Seus dados de estudo permanecem neste navegador.</p>
+      </form>
+    </div>
 
     <div class="app">
       <aside class="sidebar">
@@ -1061,6 +1109,19 @@
                 </div>
               </section>
             </div>
+
+            <section class="card access-card" id="accessCard" aria-labelledby="accessTitle">
+              <div class="access-copy">
+                <h2 id="accessTitle">Acesso</h2>
+                <p>
+                  Você entrou com usuário e senha. Ao sair, as credenciais serão pedidas novamente
+                  neste navegador.
+                </p>
+              </div>
+              <button type="button" class="btn danger" id="logoutBtn">
+                <svg class="icon"><use href="#i-exit" /></svg> Sair da conta
+              </button>
+            </section>
           </section>
         </main>
 
